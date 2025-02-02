@@ -6,12 +6,12 @@ include_once 'bd/conexion.php';
 
 $user = $_SESSION["s_usuario"];
 
-$objeto = new Conexion();
-$conexion = $objeto->Conectar();
 $consulta = "SELECT * FROM usuarios WHERE usuario = '$user' ";
 
 $resultado = $conexion->prepare($consulta);
+$resultado->bindParam(':user', $user, PDO::PARAM_STR);
 $resultado->execute();
+
 $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <div class="animate__animated p-6" :class="[$store.app.animation]">

@@ -35,7 +35,8 @@
     <tr>
       <th scope="col">Cliente</th>
       <th scope="col">Asesor</th>
-      <th scope="col">Cantidad</th>
+      <th scope="col">Cantidad S/</th>
+      <th scope="col">Total S/</th> 
       <th scope="col">&nbsp;</th>
     </tr>
   </thead>
@@ -62,6 +63,7 @@
       <th scope="row"><?php echo $fila['cliente'] ?></th>
       <td><?php echo $fila['asesor']; ?></</td>
       <td><?php echo $fila['cantidad']; ?></</td>
+      <td><?php echo $fila['total']; ?></</td>
       <td>
         <form method="POST" action="couta_ahorro.php">
             <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
@@ -73,7 +75,14 @@
     }   
             
         } else {
-            echo "No se encontraron resultados";
+        ?>
+        <style>
+            table{
+                display: none !important;
+            }
+        </style>
+        <p style="text-align:center;">No hay registros</p>
+        <?php 
         }
     ?>
   </tbody>

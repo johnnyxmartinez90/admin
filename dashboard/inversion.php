@@ -35,9 +35,9 @@
     <tr>
       <th scope="col">Cliente</th>
       <th scope="col">Asesor</th>
-      <th scope="col">Cantidad</th>
+      <th scope="col">Cantidad S/</th>
       <th scope="col">Tiempo</th>
-      <th scope="col">&nbsp;</th>
+      <th scope="col">Couta mensual S/</th>
     </tr>
   </thead>
   <tbody>
@@ -58,24 +58,30 @@
         // Verifica si la consulta ha devuelto resultados
         if ($resultado->num_rows > 0) {
             while($fila = $resultado->fetch_assoc()) {     
+                $cant = $fila['cantidad'];
+                $tim = $fila['tiempo'];
+                $te = $tim*12;
+                $couta = $cant/$te;
     ?>
     <tr>
       <th scope="row"><?php echo $fila['cliente'] ?></th>
       <td><?php echo $fila['asesor']; ?></</td>
       <td><?php echo $fila['cantidad']; ?></</td>
       <td><?php echo $fila['tiempo']; ?> años</</td>
-      <td>
-        <form method="POST" action="couta_inversion.php">
-            <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
-            <button class="btn btn-primary" type="submit">Ver pagos</button>
-        </form>
-      </td>
+      <td><?php echo $couta ?></</td>
     </tr>
     <?php 
     }   
             
         } else {
-            echo "No se encontraron resultados";
+        ?>
+        <style>
+            table{
+                display: none !important;
+            }
+        </style>
+        <p style="text-align:center;">No hay registros</p>
+        <?php 
         }
     ?>
   </tbody>

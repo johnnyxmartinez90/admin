@@ -1,5 +1,5 @@
 <?php 
-class Conexion{   
+/*class Conexion{   
     public static function Conectar() {        
         define('servidor', 'localhost');
         define('nombre_bd', 'progresardatos');
@@ -14,3 +14,11 @@ class Conexion{
         }
     }
 }
+
+$conexion = new mysqli("localhost", "root", "", "progresardatos");
+
+if ($conexion->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}*/
+
+$conexion = new PDO('mysql:host=localhost;dbname=progresardatos', 'root', '');

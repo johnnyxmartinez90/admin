@@ -40,7 +40,7 @@
 
         $user = $_SESSION["s_usuario"]; 
 
-        $sql = "SELECT * FROM ahorro WHERE asesor = '$usuario' ";
+        echo $sql = "SELECT * FROM ahorro WHERE asesor = '$usuario' ";
         $resultado = $conexion->query($sql);
 
         // Verifica si la consulta ha devuelto resultados
