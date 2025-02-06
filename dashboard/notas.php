@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 // Obtener el id_asesor del usuario logueado
-$user = 'usuario_logueado';  // Asegúrate de obtener el nombre de usuario actual
+$user = $_SESSION["s_usuario"];  // Asegúrate de obtener el nombre de usuario actual
 $consulta = "SELECT * FROM usuarios WHERE usuario = '$user' ";
 $result = $conn->query($consulta);
 if ($result->num_rows > 0) {
@@ -179,3 +179,9 @@ $conn->close();
 
 
 <?php require_once "parte_inferior.php" ?>
+
+Warning
+: Undefined variable $id_asesor in
+C:\xampp\htdocs\admin\dashboard\notas.php
+on line
+65 

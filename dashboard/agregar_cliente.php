@@ -177,7 +177,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="panel mb-5">
                                         <label for="notes">Anotaciones</label>
                                         <textarea id="anotaciones" name="anotaciones" class="form-textarea min-h-[130px]" placeholder="Datos Adicionales..." x-model="params.notes"></textarea>
-                                        <input type="hidden" id="asesor" name="asesor" value="<?php echo $row['nombres'] ;?>" readonly>
+                                        <input type="hidden" id="asesor" name="asesor" value="<?php echo $row['usuario'] ;?>" readonly>
                                 </div>
                                 <div class="panel mb-5">
                                         <label for="iban-code" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">Foto de perfil</label>

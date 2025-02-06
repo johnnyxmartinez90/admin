@@ -1,5 +1,10 @@
 <?php require_once "parte_superior.php"?>
-
+<style>
+button.btn.btn-primary.form-control {
+    width: 8em;
+    margin: 0 auto;
+}
+</style>
 <!--INICIO del cont principal-->
 <form method="POST" style="width: 85%; margin: auto;">
   <div class="mb-3">
@@ -46,10 +51,7 @@
   </div>
     <input class="form-control" type="hidden" name="asesor" id="asesor" value="<?php echo $usuario; ?>">
     <label for="cantidad" class="form-label">Cantidad</label>
-    <input class="form-control" type="text" name="cantidad" id="cantidad"> 
-  </div>
-  <div class="mb-3">
-    <!-- Botón de tipo submit -->
+    <input class="form-control" type="text" name="cantidad" id="cantidad"><br> 
     <button type="submit" class="btn btn-primary form-control">Guardar</button>
   </div>
 </form>
@@ -93,7 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $conexion->close();
     } else {
         // Si la cantidad no es válida, muestra un mensaje de error
-        echo "La cantidad debe ser un valor numérico entre 1 y 5000.";
     }
 }
 ?>

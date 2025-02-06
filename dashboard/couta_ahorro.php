@@ -132,6 +132,6 @@
     }
 ?>
 <br>
-<p style="text-align: center;">Restante de credito: <b><?php echo $cant-$total_abono; ?> S/</b></p>
+<p style="text-align: center;">Restante de ahorro: <b><?php echo $cant-$total_abono; ?> S/</b></p>
 <!--FIN del cont principal-->
 <?php require_once "parte_inferior.php"?>
