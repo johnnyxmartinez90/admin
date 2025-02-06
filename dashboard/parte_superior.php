@@ -14,22 +14,41 @@ if($_SESSION["s_usuario"] === null){
         <title>Panel de Control - Progresar</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicons -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="img/favicon.png" rel="icon">
         <link href="img/favicon.png" rel="apple-touch-icon">
         <link rel="icon" type="image/x-icon" href="favicon.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" media="screen" href="assets/css/perfect-scrollbar.min.css">
         <link href="assets/css/fullcalendar.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
         <link defer="" rel="stylesheet" type="text/css" media="screen" href="assets/css/animate.css">
+
         <script src="assets/js/perfect-scrollbar.min.js"></script>
         <script defer="" src="assets/js/popper.min.js"></script>
         <script defer="" src="assets/js/tippy-bundle.umd.min.js"></script>
         <script defer="" src="assets/js/sweetalert.min.js"></script>
     </head>
+
+<style type="text/css">
+:is(.dark .dark\:text-white-dark) .relative.flex.w-full.items-center.bg-white.px-5.py-2\.5.dark\:bg-\[\#0e1726\] {
+    background: #0e1726 !important;
+}
+:is(.dark .dark\:text-white-dark) ul.perfect-scrollbar.relative.h-\[calc\(100vh-80px\)\].space-y-0\.5.overflow-y-auto.overflow-x-hidden.p-4.py-0.font-semibold.ps.ps--active-y {
+    background: #0e1726 !important;
+}
+:is(.dark .dark\:text-white-dark) .flex.items-center.justify-between.px-4.py-3 {
+    background: #0e1726 !important;
+}
+:is(.dark .dark\:text-white-dark) .h-full.bg-white.dark\:bg-\[\#0e1726\] {
+    background: #0e1726 !important;
+}
+:is(.dark .dark\:text-white-dark) span.text-black.ltr\:pl-3.rtl\:pr-3.dark\:text-\[\#506690\].dark\:group-hover\:text-white-dark {
+    color: #878b93 !important;
+}
+</style>
 
     <body x-data="main" class="relative overflow-x-hidden font-nunito text-sm font-normal antialiased" :class="[ $store.app.sidebar ? 'toggle-sidebar' : '', $store.app.theme === 'dark' || $store.app.isDarkMode ?  'dark' : '', $store.app.menu, $store.app.layout,$store.app.rtlClass]">
 
@@ -208,7 +227,6 @@ if($_SESSION["s_usuario"] === null){
 
                             <li class="nav-item">
                                 <ul>
-
                                     <li class="nav-item">
                                         <a href="inicio.php" class="group">
                                             <div class="flex items-center">
@@ -244,7 +262,7 @@ if($_SESSION["s_usuario"] === null){
                             </h2>
 
                             <li class="menu nav-item">
-                                <a href="credito.php" class="nav-link group">
+                                <a href="ahorro.php" class="nav-link group">
                                     <div class="flex items-center">
                                         <svg class="shrink-0 group-hover:!text-primary" width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path opacity="0.5" d="M13 15.4C13 13.3258 13 12.2887 13.659 11.6444C14.318 11 15.3787 11 17.5 11C19.6213 11 20.682 11 21.341 11.6444C22 12.2887 22 13.3258 22 15.4V17.6C22 19.6742 22 20.7113 21.341 21.3556C20.682 22 19.6213 22 17.5 22C15.3787 22 14.318 22 13.659 21.3556C13 20.7113 13 19.6742 13 17.6V15.4Z" fill="currentColor"></path>
@@ -258,7 +276,7 @@ if($_SESSION["s_usuario"] === null){
                             </li>
 
                             <li class="menu nav-item">
-                                <a href="ahorro.php" class="nav-link group">
+                                <a href="credito.php" class="nav-link group">
                                     <div class="flex items-center">
                                         <svg class="shrink-0 group-hover:!text-primary" width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path opacity="0.5" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z" fill="currentColor"></path>
@@ -444,7 +462,7 @@ if($_SESSION["s_usuario"] === null){
                             <div class="hidden ltr:mr-2 rtl:ml-2 sm:block">
                                 <ul class="flex items-center space-x-2 rtl:space-x-reverse dark:text-[#d0d2d6]">
                                     <li>
-                                        <a href="apps-calendar.html" class="block rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60">
+                                        <a href="calendar.php" class="block rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60">
                                             <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V12Z" stroke="currentColor" stroke-width="1.5"></path>
                                                 <path opacity="0.5" d="M7 4V2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
@@ -655,58 +673,9 @@ if($_SESSION["s_usuario"] === null){
                                     </ul>
                                 </div>
                                 <div class="dropdown flex-shrink-0" x-data="dropdown" @click.outside="open = false">
-                                    <?php 
-    include_once 'bd/conexion.php';
-
-    $user = $_SESSION["s_usuario"];
-
-    // Consulta SQL para obtener el usuario (ajusta según tu lógica)
-    $sql = "SELECT id, nombres, cargo FROM usuarios WHERE usuario = :user";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':user', $user, PDO::PARAM_STR);
-    $stmt->execute();
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    // Obtener el ID del asesor
-    foreach ($data as $row) {
-        $id_asesor = $row['id'];
-    }
-
-    // Consulta para obtener la imagen
-    $query = "SELECT contenido, tipo FROM imagenes_asesores WHERE id_asesor = :id";
-    $stmt = $conexion->prepare($query);
-    $stmt->bindParam(':id', $id_asesor, PDO::PARAM_INT);
-    $stmt->execute();
-
-    // Obtener la imagen
-    $imageData = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Verifica si la imagen fue recuperada correctamente
-    if ($imageData) {
-        // Codificar el contenido de la imagen en base64
-        $imageContent = base64_encode($imageData['contenido']);
-        $imageType = $imageData['tipo'];
-    } else {
-        // Si no se encuentra la imagen, se puede mostrar una imagen predeterminada
-        $imageContent = null;
-        $imageType = null;
-    }
-?>
-
-<a href="javascript:;" class="group relative" @click="toggle()">
-    <span>
-        <?php if ($imageContent): ?>
-            <!-- Mostramos la imagen recuperada de la base de datos -->
-            <img class="h-9 w-9 rounded-full object-cover saturate-50 group-hover:saturate-100" 
-                 src="data:<?php echo $imageType; ?>;base64,<?php echo $imageContent; ?>" alt="image">
-        <?php else: ?>
-            <!-- Si no hay imagen, mostramos una imagen por defecto -->
-            <img class="h-9 w-9 rounded-full object-cover saturate-50 group-hover:saturate-100" 
-                 src="path/to/default/image.jpg" alt="default image">
-        <?php endif; ?>
-    </span>
-</a>
-
+                                    <a href="javascript:;" class="group relative" @click="toggle()">
+                                        <span><img class="h-9 w-9 rounded-full object-cover saturate-50 group-hover:saturate-100" src="img/user.png" alt="image"></span>
+                                    </a>
                                     <ul x-cloak="" x-show="open" x-transition="" x-transition.duration.300ms="" class="top-11 w-[230px] !py-0 font-semibold text-dark ltr:right-0 rtl:left-0 dark:text-white-dark dark:text-white-light/90">
                                         <li>
                                             <div class="flex items-center px-4 py-4">

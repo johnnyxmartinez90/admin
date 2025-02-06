@@ -163,6 +163,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 { name: 'Asesor', hidden:false},
                                 { name: 'Estado', hidden:false},
                                 { name: 'Anotaciones', hidden:false},
+                                { name: 'Acciones', hidden: false },
                             ],
 
                                 removeNotification(value) {
@@ -224,6 +225,10 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                 row.asesor,
                 row.estado,
                 row.anotaciones,
+                `<div class="flex space-x-2">
+                                <a href="editar_cliente.php?id=${row.id}" class="btn btn-outline-primary btn-sm">Editar</a>
+                                <a href="eliminar_cliente.php?id=${row.id}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                            </div>`,
             ]),
         },
         perPage: 10,
@@ -268,15 +273,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 cols.hide(this.hideCols);
                                 cols.show(this.showCols);
                             },
-                            formatDate(date) {
-                                if (date) {
-                                    const dt = new Date(date);
-                                    const month = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : dt.getMonth() + 1;
-                                    const day = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
-                                    return day + '/' + month + '/' + dt.getFullYear();
-                                }
-                                return '';
-                            },
+                            
                         }));
                     });</script>                  
 <!-- end main content section -->

@@ -1,6 +1,7 @@
+<!-- INICIO del cont principal -->
+<?php require_once "parte_superior.php" ?>
+
 <?php
-// Start the session
-session_start();
 
 // Check if the session variable is set
 if (!isset($_SESSION["s_usuario"])) {
@@ -34,9 +35,6 @@ if ($resultado->num_rows > 0) {
 // Closing the first connection
 $conexion->close();
 ?>
-
-<!-- INICIO del cont principal -->
-<?php require_once "parte_superior.php" ?>
 
 <br><h1 style="text-align: center;">Listado de clientes</h1><br>
 <br><a style="width:15em;margin: 0 auto;" href="registrar_credito.php" class="btn btn-primary">Registrar credito</a><br>

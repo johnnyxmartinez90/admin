@@ -46,10 +46,7 @@
   </div>
     <input class="form-control" type="hidden" name="asesor" id="asesor" value="<?php echo $usuario; ?>">
     <label for="cantidad" class="form-label">Cantidad</label>
-    <input class="form-control" type="text" name="cantidad" id="cantidad"> 
-  </div>
-  <div class="mb-3">
-    <!-- Botón de tipo submit -->
+    <input class="form-control" type="text" name="cantidad" id="cantidad"><br>
     <button type="submit" class="btn btn-primary form-control" style="width:10em; margin: 0 auto;">Guardar</button>
   </div>
 </form>

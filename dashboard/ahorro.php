@@ -29,7 +29,7 @@
     ?>
 
 <br><h1 style="text-align: center;">Listado de clientes</h1><br>
-<br><a style="width:15em;margin: 0 auto;" href="registrar_ahorro.php" class="btn btn-primary">Registrar ahorro</a><br>
+<br><a style="width:15em;margin: 0 auto;" href="registrar_ahorro.php" class="btn btn-primary">Apertura de ahorro</a><br>
 <table class="table" style="width:80%;margin:0 auto;">
   <thead>
     <tr>
@@ -67,7 +67,7 @@
       <td>
         <form method="POST" action="couta_ahorro.php">
             <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
-            <button class="btn btn-primary" type="submit">Ver pagos</button>
+            <button class="btn btn-primary" type="submit">Ver ahorro</button>
         </form>
       </td>
     </tr>

@@ -20,7 +20,11 @@ $resultado->execute();
 $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-
+<style type="text/css">
+.grid.grid-cols-1.gap-5.md\:grid-cols-2 {
+    width: 335%;
+}
+</style>
 <div class="animate__animated p-6" :class="[$store.app.animation]">
     <!-- start main content section -->
     <div>
