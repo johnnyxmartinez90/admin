@@ -1,60 +1,56 @@
-<?php require_once "parte_superior.php" ?>
+<?php
+    require_once "parte_superior.php";
 
-<?php 
-    $id = $_POST['id']; // Usar asesor_n de $_POST
-    $titulo = $_POST['titulo'];
-    $contenido = $_POST['contenido'];
-?>
-
-<form method="POST" style="width:80%;margin:0 auto;">
-    <!-- Campo oculto para el ID -->
-    <input type="hidden" name="id" id="id" value="<?php echo $id; ?>" required >
-
-    <!-- Campo de Título -->
-    <div class="mb-3">
-        <label for="titulo" class="form-label">Título</label>
-        <input class="form-control" type="text" name="titulo" id="titulo" value="<?php echo $titulo; ?>" required>
-    </div>
-
-    <!-- Campo de Contenido -->
-    <div class="mb-3">
-        <label for="contenido" class="form-label">Contenido</label>
-        <!-- Aquí es donde se debe colocar el contenido dentro de las etiquetas <textarea> -->
-        <textarea class="form-control" name="contenido" id="contenido" required><?php echo $contenido; ?></textarea>
-    </div>
-
-    <!-- Botón para enviar el formulario -->
-    <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </div>
-</form>
-<?php 
-    if ($_SERVER['REQUEST_METHOD'] == "POST"){
-        $id = $_POST['id']; // Usar asesor_n de $_POST
-        $titulo = $_POST['titulo'];
-        $contenido = $_POST['contenido'];
-
-        // Conexión a la base de datos
     $conexion = new mysqli("localhost", "root", "", "progresardatos");
 
-    // Comprobar si la conexión fue exitosa
+    // Check if the connection was successful
     if ($conexion->connect_error) {
         die("Conexión fallida: " . $conexion->connect_error);
     }
 
-        $sql = "UPDATE notas SET titulo = '$titulo', contenido = '$contenido' WHERE id = '$id' ";
+    $id = $_POST['id'];
+    $titulo = $_POST['titulo'];
+    $contenido = $_POST['contenido'];
 
+    // Fetch the note data from the database
+    $sql = "SELECT * FROM notas WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $id); // Bind the ID to the SQL query
+    $stmt->execute();
+    $resultado = $stmt->get_result();
 
-        if ($conexion->query($sql)) {
-                    ?>
-            <a class="btn btn-primary" href="notas.php" style="width:8em;margin: 0 auto;">Salir</a>
-            <?php
-                } else {
-                    //echo "Error al registrar el pago: " . $conexion->error;
-                }
-
-            } else {
-                // Si no se encontró el registro de ahorro para ese asesor
+    // Check if the note exists
+    if ($resultado->num_rows > 0) {
+        $row = $resultado->fetch_assoc();
+        $titulo = $row['titulo'];
+        $contenido = $row['contenido'];
+    } else {
+        echo "Nota no encontrada.";
+        exit;
     }
+
 ?>
+
+<!-- HTML Form to Edit the Note -->
+<form method="POST" action="nota_editada.php" style="width:80%;margin:0 auto;">
+    <!-- Hidden field for the note ID -->
+    <input type="hidden" name="id2" id="id2" value="<?php echo $id; ?>" required>
+
+    <!-- Title field -->
+    <div class="mb-3">
+        <label for="titulo" class="form-label">Título</label>
+        <input class="form-control" type="text" name="titulo2" id="titulo2" value="<?php echo htmlspecialchars($titulo); ?>" required>
+    </div>
+
+    <!-- Content field -->
+    <div class="mb-3">
+        <label for="contenido" class="form-label">Contenido</label>
+        <textarea class="form-control" name="contenido2" id="contenido2" required><?php echo htmlspecialchars($contenido); ?></textarea>
+    </div>
+
+    <!-- Submit button -->
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>
 <?php require_once "parte_inferior.php" ?>

@@ -55,11 +55,11 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="mt-4 flex items-center">
                                             <label for="reciever-name" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">Cal. SBS</label>
                                             <select id="calsbs" name="calsbs" class="form-select">
-                                                 <option>Normal</option>
-                                                 <option>Problemas Potenciales</option>
-                                                 <option>Deficiente</option>
-                                                 <option>Dudoso</option>
-                                                 <option>Perdida</option>
+                                                 <option value="Normal">Normal</option>
+                                                 <option value="Problemas Potenciales">Problemas Potenciales</option>
+                                                 <option value="Deficiente">Deficiente</option>
+                                                 <option value="Dudoso">Dudoso</option>
+                                                 <option value="Perdida">Perdida</option>
                                             </select>
                                         </div>
                                         
@@ -80,8 +80,8 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                             <div class="mt-4 flex items-center">
                                                 <label for="reciever-name" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">Sexo</label>
                                                 <select id="sexo" name="sexo" class="form-select">
-                                                    <option>Masculino</option>
-                                                    <option>Femenino</option>
+                                                    <option value="Masculino">Masculino</option>
+                                                    <option value="Femenino">Femenino</option>
                                                 </select>
                                             </div>
                                             <div class="mt-4 flex items-center">
@@ -141,10 +141,10 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                             <div class="mt-4 flex items-center">
                                                 <label for="country" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">Tipo de Vivienda</label>
                                                 <select id="tipovivienda" name="tipovivienda" class="form-select flex-1" x-model="params.bankInfo.country">
-                                                    <option>Unifamiliar</option>
-                                                    <option>Edificio Multifamiliar</option>
-                                                    <option>Conjunto Residencial</option>
-                                                    <option>Quinta</option>
+                                                    <option value="Unifamiliar">Unifamiliar</option>
+                                                    <option value="Edificio Multifamiliar">Edificio Multifamiliar</option>
+                                                    <option value="Conjunto Residencial">Conjunto Residencial</option>
+                                                    <option value="Quinta">Quinta</option>
                                                 </select>
                                             </div>
                                             <div class="mt-4 flex items-center">
@@ -177,7 +177,9 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="panel mb-5">
                                         <label for="notes">Anotaciones</label>
                                         <textarea id="anotaciones" name="anotaciones" class="form-textarea min-h-[130px]" placeholder="Datos Adicionales..." x-model="params.notes"></textarea>
-                                        <input type="hidden" id="asesor" name="asesor" value="<?php echo $row['usuario'] ;?>" readonly>
+                                        <?php foreach ($data as $data) { ?> 
+                                        <input type="text" id="asesor" name="asesor" value="<?php echo $data['nombres'] ;?>" readonly>
+                                        <?php } ?>
                                 </div>
                                 <div class="panel mb-5">
                                         <label for="iban-code" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">Foto de perfil</label>
@@ -239,7 +241,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $asesor = $_POST['asesor'];
     $anotaciones = $_POST['anotaciones'];
 
-    echo $consulta2 = "INSERT INTO clientes (nombres, dni, ruc, calsbs, telefono, correo, sexo, fechanacimiento, estadocivil, conyuge, dniconyuge, direcvivienda, departamento, provincia, distrito, ubic, refvivienda, tipovivienda, suministro, ocupacion, directrabajo, reftrabajo, asesor, estado, anotaciones) VALUES ('$nombres','$dni','$ruc','$calsbs','$telefono','$correo','$sexo','$fechanacimiento','$estadocivil','$conyuge','$dniconyuge','$direcvivienda','$departamento','$provincia','$distrito','$ubic','$refvivienda','$tipovivienda','$suministro','$ocupacion','$directrabajo','$reftrabajo','$asesor','Activo','$anotaciones')";
+    $consulta2 = "INSERT INTO clientes (nombres, dni, ruc, calsbs, telefono, correo, sexo, fechanacimiento, estadocivil, conyuge, dniconyuge, direcvivienda, departamento, provincia, distrito, ubic, refvivienda, tipovivienda, suministro, ocupacion, directrabajo, reftrabajo, asesor, estado, anotaciones) VALUES ('$nombres','$dni','$ruc','$calsbs','$telefono','$correo','$sexo','$fechanacimiento','$estadocivil','$conyuge','$dniconyuge','$direcvivienda','$departamento','$provincia','$distrito','$ubic','$refvivienda','$tipovivienda','$suministro','$ocupacion','$directrabajo','$reftrabajo','$asesor','Activo','$anotaciones')";
 
     $resultado2 = $mysqli->prepare($consulta2);
     $resultado2->execute();

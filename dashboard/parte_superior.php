@@ -625,30 +625,54 @@ if($_SESSION["s_usuario"] === null){
                                                 </template>
                                             </div>
                                         </li>
-                                        <template x-for="notification in notifications">
-                                            <li class="dark:text-white-light/90">
-                                                <div class="group flex items-center px-4 py-2" @click.self="toggle">
-                                                    <div class="grid place-content-center rounded">
-                                                        <div class="relative h-12 w-12">
-                                                            <img class="h-12 w-12 rounded-full object-cover" :src="`assets/images/${notification.profile}`" alt="image">
-                                                            <span class="absolute right-[6px] bottom-0 block h-2 w-2 rounded-full bg-success"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex flex-auto ltr:pl-3 rtl:pr-3">
-                                                        <div class="ltr:pr-3 rtl:pl-3">
-                                                            <h6 x-html="notification.message"></h6>
-                                                            <span class="block text-xs font-normal dark:text-gray-500" x-text="notification.time"></span>
-                                                        </div>
-                                                        <button type="button" class="text-neutral-300 opacity-0 hover:text-danger group-hover:opacity-100 ltr:ml-auto rtl:mr-auto" @click="removeNotification(notification.id)">
-                                                            <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
-                                                                <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </template>
+         <?php  
+$conexion = new mysqli("localhost", "root", "", "progresardatos");  
+$user = $_SESSION["s_usuario"];  
+
+// Obtener el nombre del usuario desde la base de datos
+$sql = "SELECT * FROM usuarios WHERE usuario = '$user'"; 
+$resultado = $conexion->query($sql);  
+
+if ($resultado->num_rows > 0) {     
+    while($row = $resultado->fetch_assoc()) {         
+        $id_a = $row['id'];     
+    } 
+} 
+
+// Consulta para obtener notificaciones sin duplicados
+$sql2 = "SELECT * FROM notificaciones WHERE id_asesor = '$id_a'"; 
+$resultado2 = $conexion->query($sql2);  
+
+$notificaciones_mostradas = array(); // Para almacenar notificaciones ya mostradas
+
+if ($resultado2->num_rows > 0) {     
+    while($row2 = $resultado2->fetch_assoc()) { 
+        // Mostrar la notificación
+        ?>
+        <li class="dark:text-white-light/90">
+            <div class="group flex items-center px-4 py-2" @click.self="toggle">
+                <div class="grid place-content-center rounded"></div>
+                <div class="flex flex-auto ltr:pl-3 rtl:pr-3">
+                    <div class="ltr:pr-3 rtl:pl-3">
+                        <h6><?php echo htmlspecialchars($row2['notification']); ?></h6>
+                        <span class="block text-xs font-normal dark:text-gray-500"><?php echo htmlspecialchars($row2['time']); ?></span>
+                    </div>
+                    <button type="button" class="text-neutral-300 opacity-0 hover:text-danger group-hover:opacity-100 ltr:ml-auto rtl:mr-auto" @click="removeNotification(notification.id)">
+                        <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
+                            <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <?php
+        // Marcar la notificación como mostrada
+        $notificaciones_mostradas[] = $row2['id'];
+    }
+}
+?> 
+
                                         <template x-if="notifications.length">
                                             <li>
                                                 <div class="p-4">
