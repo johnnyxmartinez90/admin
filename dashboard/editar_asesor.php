@@ -3,14 +3,16 @@
 // Iniciar la sesión (si no está iniciada)
 session_start();
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 // Incluir la conexión a la base de datos
 include_once 'bd/conexion.php';
 
 // Verificar si el usuario está logueado (opcional, si decides usar sesiones más adelante)
 if (!isset($_SESSION["s_usuario"])) {
-    // Si no hay sesión, puedes redirigir o manejar el caso como desees
-    // Por ahora, asignamos un valor por defecto para evitar errores
-    $_SESSION["s_usuario"] = "usuario_prueba"; // Cambia esto según tus necesidades
+    echo "No user is logged in.";
+    exit(); // Stop execution if the session variable is not set
 }
 
 // Obtener el nombre de usuario desde la sesión
@@ -185,7 +187,7 @@ if (!empty($data)) {
         }
 
         // Redirigir después de guardar los cambios
-        echo '<script type="text/javascript">window.location.href = "perfil.php";</script>';
+        echo '<script type="text/javascript">window.location.href = "lista_asesores.php";</script>';
     }
     ?>
 </div>
